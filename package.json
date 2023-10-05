@@ -1,5 +1,5 @@
 {
-  "name": "@libsql/hrana-client",
+  "name": "hrana-client-serverless",
   "version": "0.5.5",
   "keywords": [
     "hrana",
@@ -18,37 +18,29 @@
   ],
   "license": "MIT",
   "type": "module",
-  "main": "lib-cjs/index.js",
+  "main": "lib-esm/index.js",
   "types": "lib-esm/index.d.ts",
   "exports": {
     ".": {
       "types": "./lib-esm/index.d.ts",
-      "import": "./lib-esm/index.js",
-      "require": "./lib-cjs/index.js"
+      "import": "./lib-esm/index.js"
     }
   },
   "files": [
-    "lib-cjs/**",
     "lib-esm/**"
   ],
   "scripts": {
-    "clean": "rm -rf ./lib-cjs ./lib-esm ./*.tsbuildinfo",
+    "clean": "rm -rf ./lib-esm ./*.tsbuildinfo",
     "prepublishOnly": "npm run clean-build",
-    "prebuild": "rm -rf ./lib-cjs ./lib-esm",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc -p tsconfig.build-cjs.json",
-    "build:esm": "tsc -p tsconfig.build-esm.json",
-    "postbuild": "cp package-cjs.json ./lib-cjs/package.json",
+    "prebuild": "rm -rf ./lib-esm",
+    "build": "tsc -p tsconfig.build-esm.json",
     "clean-build": "npm run clean && npm run build",
     "typecheck": "tsc --noEmit",
     "test": "jest --runInBand",
     "typedoc": "rm -rf ./docs && typedoc"
   },
   "dependencies": {
-    "@libsql/isomorphic-fetch": "^0.1.10",
-    "@libsql/isomorphic-ws": "^0.1.5",
-    "js-base64": "^3.7.5",
-    "node-fetch": "^3.3.2"
+    "js-base64": "^3.7.5"
   },
   "devDependencies": {
     "@types/jest": "^29",
